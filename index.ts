@@ -15,6 +15,11 @@ app.get('/user/ajay',(req,res)=>{
         "message":"Hi Ajay welcome to team"
     })
 })
+app.get('/user/sai',(req,res)=>{
+    res.status(201).json({
+        "message":"Hi sai welcome to team"
+    })
+})
 
 
 app.listen(3000,()=>{

@@ -1,7 +1,6 @@
 name: Pushing the Dockerfile to DockerHub
 on:
-  push: 
-    branches: [ main ]
+  [push, fork] 
 
 jobs:
   build:

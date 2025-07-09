@@ -1,23 +1,26 @@
 name: Pushing the Dockerfile to DockerHub
-on: 
+
+on:
   push:
-      branches: [ main ]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v2
-      - name: Docker login
+        uses: actions/checkout@v3  # Updated to v3 for better performance
+
+      - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Build and push
+
+      - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/user-app-backend:${{ github.sha }}
+          tags: ajayt8374/simplebackendinnodejs:latest,ajayt8374/simplebackendinnodejs:${{ github.sha }}
